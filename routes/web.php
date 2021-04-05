@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApplicationController;
 
@@ -13,5 +14,8 @@ use App\Http\Controllers\ApplicationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/{any}', [ApplicationController::class, 'index'])->where('any', '.*');
+if (Auth::check()) {
+//    Auth::routes();
+}else{
+    Route::get('/{any}', [ApplicationController::class, 'index'])->where('any', '.*');
+}
